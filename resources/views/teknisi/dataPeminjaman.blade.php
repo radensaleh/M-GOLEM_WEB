@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Data Peminjaman</title>
+    <title>Data Peminjaman | Teknisi M-GOLEM</title>
 
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="shortcut icon" href="images/icon.png">
@@ -87,7 +87,7 @@
                         <a href="{{ route('dataKembali') }}"><i class="menu-icon fa fa-handshake-o"></i>Data Pengembalian </a>
                     </li>
                     <li>
-                        <a href="#"><i class="menu-icon fa fa-barcode"></i>Data Barang </a>
+                        <a href="{{ route('dataBarang') }}"><i class="menu-icon fa fa-qrcode"></i>Data Barang </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -100,7 +100,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('dashboard')}}"><img src="images/Logo_MGOLEM_Web.png" width="235" height="40" alt="Logo"></a>
+                    <a class="navbar-brand" href="{{ route('dashboard')}}"><img src="images/Logo_MGOLEM_Web1.png" width="170" height="40" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="{{ route('dashboard') }}"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -108,7 +108,7 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
@@ -136,21 +136,21 @@
                                     <p>Server #3 overloaded.</p>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/boy.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>> Hello, {{ $nama_teknisi }}</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -206,7 +206,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        @foreach($pinjam as $key => $data)
+                                          <tr>
+                                            <td>{{ $data->id_pinjam }}</td>
+                                            <td>{{ $data->mahasiswa->nama_mhs }}</td>
+                                            <td>{{ $data->nama_kegiatan }}</td>
+                                            <td>{{ $data->tgl_pinjam }}</td>
+                                            <td>{{ $data->tgl_kembali }}</td>
+                                            <td>
+                                              @if( $data->status == 1 )
+                                                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-times-circle"></i> Belum Verifikasi Peminjaman</button>
+                                              @elseif( $data->status == 2 )
+                                                <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-clock-o"></i> Sedang Di Pinjam..</button>
+                                              @elseif( $data->status == 3 )
+                                                <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-clock-o"></i> Belum Verifikasi Pengembalian</button>
+                                              @else
+                                                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-clock-o"></i> Sudah Di Kembalikan</button>
+                                              @endif
+                                            </td>
+                                            <td></td>
+                                          </tr>
+                                        @endforeach
+                                        <!-- <tr>
                                             <td>P01</td>
                                             <td>Raden Muhammad Saleh Idris</td>
                                             <td>Praktikum Jaringan Komputer</td>
@@ -231,7 +252,7 @@
                                             <td>
                                               <button type="button" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> Detail</button>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>

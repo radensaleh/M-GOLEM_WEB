@@ -41,11 +41,33 @@ return [
             'provider' => 'users',
         ],
 
+        //custom Guards
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'mahasiswa' => [
+          'driver' => 'session',
+          'provider' => 'mahasiswa',
+        ],
+
+        'teknisi' => [
+          'driver' => 'session',
+          'provider' => 'teknisi',
+        ],
+
+        //end custom
+
+        //custom api
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
         ],
+
+        //end custom
     ],
 
     /*
@@ -70,6 +92,24 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+        //custom provider
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+
+        'mahasiswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Mahasiswa::class,
+        ],
+
+        'teknisi' => [
+            'driver' => 'eloquent',
+            'model' => App\Teknisi::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

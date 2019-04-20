@@ -6,31 +6,27 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Mahasiswa extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'tb_mahasiswa';
+    protected $table = 'tb_admin';
 
     protected $fillable = [
-      'nim','nama_mhs','id_kelas','password'
+      'id_admin','nama','password'
     ];
-
-    protected $primaryKey = 'nim';
-
-    public $incrementing = false;
 
     protected $hidden = [
       'password','remember_token'
     ];
 
+    protected $primaryKey = 'id_admin';
+
+    public $incrementing = false;
+
     public function setPasswordAttribute($value)
     {
       $this->attributes['password'] = bcrypt($value);
-    }
-
-    public function kelas(){
-        return $this->belongsTo('App\Kelas', 'id_kelas');
     }
 
 }

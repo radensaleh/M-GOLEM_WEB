@@ -6,10 +6,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Data Pengembalian</title>
+    <title>Data Mahasiswa | Admin M-GOLEM</title>
 
-    <link rel="apple-touch-icon" href="images/icon.png">
-    <link rel="shortcut icon" href="images/icon.png">
+    <link rel="apple-touch-icon" href="/images/icon.png">
+    <link rel="shortcut icon" href="/images/icon.png">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -17,16 +17,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" /> -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
    <style>
@@ -74,20 +74,26 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="{{ route('dashboardAdmin') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Data</li><!-- /.menu-title -->
-                    <li>
-                        <a href="{{ route('dataMhs') }}"><i class="menu-icon fa fa-user"></i>Data Mahasiswa </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dataPinjam') }}"><i class="menu-icon fa fa-shopping-cart"></i>Data Peminjaman </a>
-                    </li>
                     <li class="active">
-                        <a href="{{ route('dataKembali') }}"><i class="menu-icon fa fa-handshake-o"></i>Data Pengembalian </a>
+                        <a href="{{ route('dataMhsAdmin') }}"><i class="menu-icon fa fa-user"></i>Data Mahasiswa </a>
                     </li>
                     <li>
-                        <a href="#"><i class="menu-icon fa fa-barcode"></i>Data Barang </a>
+                        <a href="{{ route('dataTeknisiAdmin') }}"><i class="menu-icon fa fa-user-secret"></i>Data Teknisi </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dataBarangAdmin') }}"><i class="menu-icon fa fa-qrcode"></i>Data Barang </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dataMerkAdmin') }}"><i class="menu-icon fa fa-tags"></i>Data Merk </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dataTipeAdmin') }}"><i class="menu-icon fa fa-bookmark-o"></i>Data Tipe </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('dataKategoriAdmin') }}"><i class="menu-icon fa fa-bookmark"></i>Data Kategori </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -100,23 +106,23 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('dashboard')}}"><img src="images/Logo_MGOLEM_Web.png" width="235" height="40" alt="Logo"></a>
-                    <a class="navbar-brand hidden" href="{{ route('dashboard') }}"><img src="images/logo2.png" alt="Logo"></a>
+                    <a class="navbar-brand" href="{{ route('dashboardAdmin')}}"><img src="/images/Logo_MGOLEM_Web1.png" width="170" height="40" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="{{ route('dashboardAdmin') }}"><img src="/images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
-                        </div>
+                        </div> -->
 
-                        <div class="dropdown for-notification">
+                        <!-- <div class="dropdown for-notification">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
                                 <span class="count bg-danger">3</span>
@@ -136,21 +142,21 @@
                                     <p>Server #3 overloaded.</p>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="/images/boy.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href=""><i class="fa fa- user"></i>> Hello, {{ $nama_admin }}</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{ route('logoutAdmin') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -158,7 +164,7 @@
             </div>
         </header>
         <!-- /#header -->
-
+        <!-- Content -->
         <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
@@ -173,8 +179,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                    <li class="active">Data Pengembalian</li>
+                                    <li><a href="{{ route('dashboardAdmin') }}">Dashboard</a></li>
+                                    <li class="active">Data Mahasiswa</li>
                                 </ol>
                             </div>
                         </div>
@@ -190,48 +196,32 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Pengembalian</strong>
+                                <strong class="card-title">Data Mahasiswa</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nama Mahasiswa</th>
-                                            <th>Kegiatan</th>
-                                            <th>Tanggal Peminjaman</th>
-                                            <th>Tanggal Pengembalian</th>
-                                            <th>Status Pengembalian</th>
+                                            <th>No</th>
+                                            <th>Nim</th>
+                                            <th>Nama</th>
+                                            <th>Kelas</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>P01</td>
-                                            <td>Raden Muhammad Saleh Idris</td>
-                                            <td>Praktikum Jaringan Komputer</td>
-                                            <td>2019-03-11</td>
-                                            <td>2019-03-12</td>
+                                        @foreach($mahasiswa as $key => $data)
+                                          <tr>
+                                            <td>{{ ++$key }}</td>
+                                            <td>{{ $data->nim }}</td>
+                                            <td>{{ $data->nama_mhs }}</td>
+                                            <td>{{ $data->kelas->nama_kelas }}</td>
                                             <td>
-                                              <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check-circle"></i> Sudah Di Kembalikan</button>
+                                              <!-- <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</button> -->
+                                              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteData" data-nim="{{ $data->nim }}"><i class="fa fa-trash"></i> Delete</button>
                                             </td>
-                                            <td>
-                                              <button type="button" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> Detail</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>P02</td>
-                                            <td>Mohammad Fiqri Rahardian</td>
-                                            <td>Acara Seminar Bitcoin HMTI</td>
-                                            <td>2019-03-11</td>
-                                            <td>2019-03-12</td>
-                                            <td>
-                                              <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check-circle"></i> Sudah Di Kembalikan</button>
-                                            </td>
-                                            <td>
-                                              <button type="button" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> Detail</button>
-                                            </td>
-                                        </tr>
+                                          </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -241,8 +231,34 @@
 
                 </div>
             </div><!-- .animated -->
-        </div><!-- .content -->
+        </div>
+        <!-- .content -->
 
+        <!-- Modal Delete Data-->
+        <div id="deleteData" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"><span class="fa fa-check"></span> Delete Confirmation</h4>
+              </div>
+                <form id="modal-form-delete" method="post" action="{{ route('data-mhs.destroy', 'destroy') }}">
+                    {{ method_field('delete') }}
+                    {{ csrf_field() }}
+              <div class="modal-body">
+                    <input type="hidden" name="nim" id="cat_id" value="">
+                    <p><center>Are you sure you want to delete this ?</center></p>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" id="btnDelete"><span class="fa fa-trash"></span> Yes, Delete</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal"><span class="fa fa-times-circle"></span> No, Cancel</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
 
         <div class="clearfix"></div>
         <!-- Footer -->
@@ -267,24 +283,72 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.1.0/dist/sweetalert2.all.js"></script>
+    <script src="/assets/js/main.js"></script>
 
 
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="assets/js/init/datatables-init.js"></script>
+    <script src="/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="/assets/js/init/datatables-init.js"></script>
 
 
     <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
+
+          $('#deleteData').on('show.bs.modal', function (event) {
+            event.preventDefault();
+
+            var button     = $(event.relatedTarget)
+            var nim = button.data('nim')
+            var modal      = $(this)
+            modal.find('.modal-body #cat_id').val(nim)
+          });
+
+          var formDelete = $('#modal-form-delete');
+          formDelete.submit(function (e) {
+              e.preventDefault();
+
+              $.ajax({
+                  url: formDelete.attr('action'),
+                  type: "POST",
+                  data: formDelete.serialize(),
+                  dataType: "json",
+                  success: function( res ){
+                    console.log(res)
+                    if( res.error == 0 ){
+                      $('#deleteData').modal('hide');
+                      swal(
+                        'Success',
+                        res.message,
+                            'success'
+                        ).then(OK => {
+                          if(OK){
+                              window.location.href = "{{ route('dataMhsAdmin') }}";
+                          }
+                        });
+                    }else{
+                        $('#deleteData').modal('hide');
+                        swal(
+                          'Fail',
+                          res.message,
+                          'error'
+                        ).then(OK => {
+                          if(OK){
+                            window.location.href = "{{ route('dataMhsAdmin') }}";
+                          }
+                        });
+                      }
+                    }
+                })
+            });
       } );
     </script>
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Data Mahasiswa</title>
+    <title>Data Pengembalian | Teknisi M-GOLEM</title>
 
     <link rel="apple-touch-icon" href="images/icon.png">
     <link rel="shortcut icon" href="images/icon.png">
@@ -77,17 +77,17 @@
                         <a href="{{ route('dashboard') }}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Data</li><!-- /.menu-title -->
-                    <li class="active">
+                    <li>
                         <a href="{{ route('dataMhs') }}"><i class="menu-icon fa fa-user"></i>Data Mahasiswa </a>
                     </li>
                     <li>
                         <a href="{{ route('dataPinjam') }}"><i class="menu-icon fa fa-shopping-cart"></i>Data Peminjaman </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{{ route('dataKembali') }}"><i class="menu-icon fa fa-handshake-o"></i>Data Pengembalian </a>
                     </li>
                     <li>
-                        <a href="#"><i class="menu-icon fa fa-barcode"></i>Data Barang </a>
+                        <a href="{{ route('dataBarang') }}"><i class="menu-icon fa fa-qrcode"></i>Data Barang </a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -100,7 +100,7 @@
         <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ route('dashboard')}}"><img src="images/Logo_MGOLEM_Web.png" width="235" height="40" alt="Logo"></a>
+                    <a class="navbar-brand" href="{{ route('dashboard')}}"><img src="images/Logo_MGOLEM_Web1.png" width="170" height="40" alt="Logo"></a>
                     <a class="navbar-brand hidden" href="{{ route('dashboard') }}"><img src="images/logo2.png" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -108,7 +108,7 @@
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <!-- <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
@@ -136,21 +136,21 @@
                                     <p>Server #3 overloaded.</p>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/boy.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>> Hello, {{ $nama_teknisi }}</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -174,7 +174,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                                    <li class="active">Data Mahasiswa</li>
+                                    <li class="active">Data Pengembalian</li>
                                 </ol>
                             </div>
                         </div>
@@ -190,31 +190,61 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Mahasiswa</strong>
+                                <strong class="card-title">Data Pengembalian</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Nim</th>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Email</th>
+                                            <th>Id</th>
+                                            <th>Nama Mahasiswa</th>
+                                            <th>Kegiatan</th>
+                                            <th>Tanggal Peminjaman</th>
+                                            <th>Tanggal Pengembalian</th>
+                                            <th>Status Pengembalian</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                      @foreach($pinjam as $key => $data)
                                         <tr>
-                                            <td>1705013</td>
+                                          <td>{{ $data->id_pinjam }}</td>
+                                          <td>{{ $data->mahasiswa->nama_mhs }}</td>
+                                          <td>{{ $data->nama_kegiatan }}</td>
+                                          <td>{{ $data->tgl_pinjam }}</td>
+                                          <td>{{ $data->tgl_kembali }}</td>
+                                          <td>
+                                              <button type="button" class="btn btn-success btn-sm"><i class="fa fa-clock-o"></i> Sudah Di Kembalikan</button>
+                                          </td>
+                                          <td></td>
+                                        </tr>
+                                      @endforeach
+                                        <!-- <tr>
+                                            <td>P01</td>
                                             <td>Raden Muhammad Saleh Idris</td>
-                                            <td>D4RPL2</td>
-                                            <td>m.salehidris13@polindra.ac.id</td>
+                                            <td>Praktikum Jaringan Komputer</td>
+                                            <td>2019-03-11</td>
+                                            <td>2019-03-12</td>
+                                            <td>
+                                              <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check-circle"></i> Sudah Di Kembalikan</button>
+                                            </td>
+                                            <td>
+                                              <button type="button" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> Detail</button>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>1705011</td>
+                                            <td>P02</td>
                                             <td>Mohammad Fiqri Rahardian</td>
-                                            <td>D4RPL2</td>
-                                            <td>madridista.fiqri@polindra.ac.id</td>
-                                        </tr>
+                                            <td>Acara Seminar Bitcoin HMTI</td>
+                                            <td>2019-03-11</td>
+                                            <td>2019-03-12</td>
+                                            <td>
+                                              <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check-circle"></i> Sudah Di Kembalikan</button>
+                                            </td>
+                                            <td>
+                                              <button type="button" class="btn btn-info btn-sm"><i class="fa fa-info-circle"></i> Detail</button>
+                                            </td>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
