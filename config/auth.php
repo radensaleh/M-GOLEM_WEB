@@ -48,13 +48,13 @@ return [
         ],
 
         'mahasiswa' => [
-          'driver' => 'session',
-          'provider' => 'mahasiswa',
+            'driver' => 'session',
+            'provider' => 'mahasiswa',
         ],
 
         'teknisi' => [
-          'driver' => 'session',
-          'provider' => 'teknisi',
+            'driver' => 'session',
+            'provider' => 'teknisi',
         ],
 
         //end custom
@@ -64,7 +64,6 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
         ],
 
         //end custom
