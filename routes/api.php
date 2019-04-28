@@ -21,8 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'API\TeknisiAPIController@doLogin');
 Route::post('loginMhs', 'API\MahasiswaAPIController@login');
-Route::get('barang', 'API\BarangAPIController@index');
+Route::post('registrasi', 'API\MahasiswaAPIController@registrasi');
+Route::get('barang', 'API\BarangAPIController@getBarang');
 Route::get('kelas', 'API\KelasAPIController@getKelas');
+Route::post('pinjamBarang', 'API\PeminjamanAPIController@peminjaman');
+Route::get('getPeminjaman', 'API\PeminjamanAPIController@getPeminjaman');
+Route::get('verifikasi', 'API\PeminjamanAPIController@verifPeminjaman');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');

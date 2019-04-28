@@ -27,7 +27,7 @@ class MahasiswaAPIController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'nim' => 'required|numeric|string|exists:tb_mahasiswa,nim',
+            'nim' => 'required|numeric|string|exists:tb_mahasiswa,nim|digits:7',
             'password' => 'required|string',
         ], $messages);
 
@@ -56,5 +56,44 @@ class MahasiswaAPIController extends Controller
     }
 
     public function registrasi(Request $request)
-    { }
+    {
+        $credentials = [
+            'nama_mhs' => $request->nama,
+            'nim'    => $request->nim,
+            'password' => $request->password,
+            'id_kelas' => $request->kelas,
+        ];
+
+        $messages = [
+            "nama_mhs.required" => "Nama tidak boleh kosong",
+            "nama_mhs.alpha_dash" => "Format nama salah",
+            "nim.required" => "NIM tidak boleh kosong",
+            "nim.unique" => "NIM sudah terdaftar",
+            "nim.numeric" => "Format NIM salah",
+            "nim.digits" => "Jumlah digit NIM harus 7",
+            "password.required" => "Password tidak boleh kosong"
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nama_mhs' => 'required|string|alpha_dash|alpha',
+            'nim' => 'required|string|unique:tb_mahasiswa|numeric|digits:7',
+            'password' => 'required|string',
+            'id_kelas' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errorRes' => 1,
+                'message' => $validator->messages()->all()[0],
+            ], 200);
+        } else {
+            $create = Mahasiswa::create($request->all());
+            if ($create) {
+                return response()->json([
+                    'errorRes' => 0,
+                    'message' => 'Registrasi berhasil'
+                ], 200);
+            }
+        }
+    }
 }
