@@ -17,8 +17,10 @@ class CreateTbPeminjamanTable extends Migration
             $table->string('id_pinjam', 5)->primary();
             $table->string('nim', 10)->index();
             $table->foreign('nim')->references('nim')->on('tb_mahasiswa');
-            $table->string('username', 13)->index();
-            $table->foreign('username')->references('username')->on('tb_teknisi');
+            $table->string('username_verifpinjam', 13)->index();
+            $table->foreign('username_verifpinjam')->references('username')->on('tb_teknisi');
+            $table->string('username_verifkembali', 13)->index();
+            $table->foreign('username_verifkembali')->references('username')->on('tb_teknisi');
             $table->string('nama_kegiatan');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
