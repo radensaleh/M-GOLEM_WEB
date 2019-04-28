@@ -13,6 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('login', 'API\TeknisiAPIController@doLogin');
+Route::post('loginMhs', 'API\MahasiswaAPIController@login');
+Route::get('barang', 'API\BarangAPIController@index');
+Route::get('kelas', 'API\KelasAPIController@getKelas');
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('details', 'API\UserController@details');
 });
