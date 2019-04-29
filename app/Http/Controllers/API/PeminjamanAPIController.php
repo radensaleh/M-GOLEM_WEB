@@ -34,18 +34,17 @@ class PeminjamanAPIController extends Controller
     public function verifPeminjaman(Request $request)
     {
         $id = request()->id;
-        $usernamePinjam = request()->username;
-        $tgl_kembali = request()->tgl_kembali;
+        $username_pinjam = request()->username_pinjam;
 
         $messages = [
             "id.required" => "ID kosong",
             "id.exists" => "ID salah",
-            "username.required" => "Username anda tiak terdaftar"
+            "username_pinjam.required" => "Username anda tiak terdaftar"
         ];
 
         $validator = Validator::make($request->all(), [
             'id' => 'required|string|exists:tb_peminjaman,id_pinjam',
-            'username' => 'required|string|exists:tb_teknisi,username',
+            'username_pinjam' => 'required|string|exists:tb_teknisi,username',
         ], $messages);
 
         if ($validator->fails()) {
