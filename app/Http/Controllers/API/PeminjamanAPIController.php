@@ -31,24 +31,48 @@ class PeminjamanAPIController extends Controller
     }
 
 
-    public function verifPeminjaman()
+    public function verifPeminjaman(Request $request)
     {
         $id = request()->id;
+        $usernamePinjam = request()->username;
+        $tgl_kembali = request()->tgl_kembali;
 
-        $status = DB::table('tb_peminjaman')->where('id_pinjam', $id)->value('status');
+        $messages = [
+            "id.required" => "ID kosong",
+            "id.exists" => "ID salah",
+            "username.required" => "Username anda tiak terdaftar"
+        ];
 
-        if ($status == '1') {
-            DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['status' => '2']);
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|string|exists:tb_peminjaman,id_pinjam',
+            'username' => 'required|string|exists:tb_teknisi,username',
+        ], $messages);
+
+        if ($validator->fails()) {
             return response()->json([
-                'errorRes' => 0,
-                'message' => 'Berhasil verifikasi peminjaman'
-            ]);
-        } else if ($status == '3') {
-            DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['status' => '0']);
-            return response()->json([
-                'errorRes' => 0,
-                'message' => 'Berhasil verifikasi pengembalian'
-            ]);
+                'errorRes' => 1,
+                'messageRes' => $validator->messages()->all()[0],
+            ], 200);
+        } else {
+            $status = DB::table('tb_peminjaman')->where('id_pinjam', $id)->value('status');
+
+            if ($status == '1') {
+                DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['status' => '2']);
+                DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['username' => $usernamePinjam]);
+
+
+                return response()->json([
+                    'errorRes' => 0,
+                    'message' => 'Berhasil verifikasi peminjaman'
+                ], 200);
+            } else if ($status == '3') {
+                DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['status' => '0']);
+                DB::table('tb_peminjaman')->where('id_pinjam', $id)->update(['tgl_kembali' => $tgl_kembali]);
+                return response()->json([
+                    'errorRes' => 0,
+                    'message' => 'Berhasil verifikasi pengembalian'
+                ], 200);
+            }
         }
     }
 
