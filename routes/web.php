@@ -22,6 +22,7 @@ Route::resource('data-merk', 'MerkController');
 Route::resource('data-kategori', 'KategoriController');
 Route::resource('data-barang','BarangController');
 Route::resource('data-mhs', 'MahasiswaController');
+Route::resource('data-kelas', 'KelasController');
 
 
 //Teknisi
@@ -46,6 +47,7 @@ Route::get('/admin/page/dtBarang', 'BarangController@showDtBarangAdmin')->name('
 Route::get('/admin/page/dtMerk', 'MerkController@showDtMerkAdmin')->name('dataMerkAdmin');
 Route::get('/admin/page/dtTipe', 'TipeController@showDtTipeAdmin')->name('dataTipeAdmin');
 Route::get('/admin/page/dtkategori', 'KategoriController@showDtKategoriAdmin')->name('dataKategoriAdmin');
+Route::get('/admin/page/dtKelas', 'KelasController@showDtKelasAdmin')->name('dataKelasAdmin');
 
 Route::get('/admin/page/dtBarang/pdf/{id_barang}','BarangController@pngQrcode')->name('downloadPng');
 Route::get('/admin/page/dtBarang/allPdf', 'BarangController@allQrCode')->name('allQrCode');
