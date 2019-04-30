@@ -15,10 +15,11 @@ class MahasiswaAPIController extends Controller
         $auth = auth()->guard('mahasiswa');
 
         $messages = [
-            "nim.required" => "NIM kosong",
-            "nim.exists" => "NIM salah",
-            "nim.numeric" => "Format NIM salah",
-            "password.required" => "Password kosong"
+            "nim.required" => "NIM Kosong",
+            "nim.exists" => "NIM Salah",
+            "nim.numeric" => "Format NIM Salah",
+            "password.required" => "Password Kosong",
+            "password.regex" => "Format Password Salah"
         ];
 
         $credentials = [
@@ -28,13 +29,13 @@ class MahasiswaAPIController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nim' => 'required|numeric|string|exists:tb_mahasiswa,nim|digits:7',
-            'password' => 'required|string',
+            'password' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
         ], $messages);
 
         if ($validator->fails()) {
             return response()->json([
                 'errorRes' => 1,
-                'messageRes' => $validator->messages(),
+                'message' => $validator->messages()->all()[0],
             ], 200);
         } else {
             if ($auth->attempt($credentials)) {
@@ -42,14 +43,14 @@ class MahasiswaAPIController extends Controller
                 $id_kelas = DB::table('tb_mahasiswa')->where('nim', $request->nim)->value('id_kelas');
                 return response()->json([
                     'errorRes' => 0,
-                    'message' => 'Login berhasil',
+                    'message' => 'Login Berhasil',
                     'nama' => $nama,
                     'kelas' => $id_kelas,
                 ]);
             } else {
                 return response()->json([
                     'errorRes'   => 2,
-                    'message' => 'Password salah'
+                    'message' => 'Password Salah'
                 ], 200);
             }
         }
@@ -91,7 +92,7 @@ class MahasiswaAPIController extends Controller
             if ($create) {
                 return response()->json([
                     'errorRes' => 0,
-                    'message' => 'Registrasi berhasil'
+                    'message' => 'Registrasi Berhasil'
                 ], 200);
             }
         }
