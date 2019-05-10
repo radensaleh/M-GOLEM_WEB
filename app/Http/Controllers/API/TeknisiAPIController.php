@@ -51,7 +51,7 @@ class TeknisiAPIController extends Controller
             } else {
                 return response()->json([
                     'errorRes'   => 2,
-                    'message' => 'Password salah'
+                    'message' => 'Password Salah'
                 ], 200);
             }
         }

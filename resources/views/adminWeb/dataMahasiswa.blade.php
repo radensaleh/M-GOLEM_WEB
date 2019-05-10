@@ -95,6 +95,9 @@
                     <li>
                         <a href="{{ route('dataKategoriAdmin') }}"><i class="menu-icon fa fa-bookmark"></i>Data Kategori </a>
                     </li>
+                    <li>
+                        <a href="{{ route('dataKelasAdmin') }}"><i class="menu-icon fa fa-star"></i>Data Kelas </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
