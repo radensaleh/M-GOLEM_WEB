@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DaftarBarang extends Model
 {
-    protected $table = 'tb_daftar_barang';
+  protected $table = 'tb_daftar_barang';
 
-    protected $fillable = [
-      'id_list','id_pinjam','id_barang'
-    ];
+  protected $fillable = [
+    'id_list', 'id_pinjam', 'id_barang', 'kuantitas'
+  ];
 
-    protected $primaryKey = 'id_list';
+  protected $primaryKey = 'id_list';
 
-    public $incrementing = false;
+  public $incrementing = false;
 }

@@ -19,7 +19,8 @@ class TeknisiAPIController extends Controller
             "username.exists" => "Username salah",
             "username.regex" => "Format username salah",
             "username.alpha_dash" => "Format username salah",
-            "password.required" => "Password kosong"
+            "password.required" => "Password kosong",
+            "password.regex" => "Format passowrd salah"
         ];
 
         $credentials = [
@@ -36,7 +37,7 @@ class TeknisiAPIController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'errorRes'   => 1,
-                'messageRes' => $validator->messages(),
+                'message' => $validator->messages()->all()[0],
             ], 200);
         } else {
             if ($auth->attempt($credentials)) {

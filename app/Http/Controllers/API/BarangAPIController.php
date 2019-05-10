@@ -27,7 +27,7 @@ class BarangAPIController extends Controller
             ]);
         } else {
             return response()->json([
-                'tipe' => false
+                'tipe' => null
             ]);
         }
     }
