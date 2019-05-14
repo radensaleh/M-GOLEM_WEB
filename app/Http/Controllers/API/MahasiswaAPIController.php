@@ -7,6 +7,7 @@ use DB;
 use App\Mahasiswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class MahasiswaAPIController extends Controller
@@ -56,23 +57,22 @@ class MahasiswaAPIController extends Controller
 
     public function ubahPassword(Request $request)
     {
-        $auth = auth()->guard('mahasiswa');
+
         $nim = $request->nim;
-        $password = $request->password;
-        $oldPassword = $request->oldPassword;
+        $password = Hash::make($request->password);
 
         $messages = [
             "nim.required" => "NIM kosong",
-            "nim.exists" => "NIM salah",
+            "nim.exists" => "NIM tidak terdaftar",
             "nim.numeric" => "Format NIM salah",
             "password.required" => "Password baru tidak boleh kosong",
-            "oldPassword.required" => "Password lama tidak boleh kosong"
+            "password.regex" => "Password harus menggunakan kombinasi huruf dan angka",
+            "password.min" => "Password minimal 8 karakter"
         ];
 
         $validator = Validator::make($request->all(), [
             'nim' => 'required|numeric|string|exists:tb_mahasiswa,nim|digits:7',
-            'oldPassword' => 'required|string',
-            'password' => 'required|string|different:oldPassword',
+            'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
         ], $messages);
 
         if ($validator->fails()) {
@@ -81,16 +81,11 @@ class MahasiswaAPIController extends Controller
                 'message' => $validator->messages()->all()[0],
             ], 200);
         } else {
-            $passLama = Mahasiswa::where('nim', $nim)->value('password');
-            if (Hash::check($passLama, $oldPassword)) {
+            $update = Mahasiswa::where('nim', $nim)->update(['password' => $password]);
+            if ($update) {
                 return response()->json([
-                    'errorRes' => 1,
-                    'message' => "Password lama salah",
-                ], 200);
-            } else {
-                return response()->json([
-                    'errorRes' => 1,
-                    'message' => "Benar",
+                    'errorRes' => 0,
+                    'message' => "Ubah password berhasil",
                 ], 200);
             }
         }
@@ -113,14 +108,16 @@ class MahasiswaAPIController extends Controller
             "nim.numeric" => "Format NIM salah",
             "nim.digits" => "Jumlah digit NIM harus 7",
             "id_kelas.exists" => "Data kelas tidak ada",
-            "password.required" => "Password tidak boleh kosong"
+            "password.required" => "Password tidak boleh kosong",
+            "password.regex" => "Password harus menggunakan kombinasi huruf kecil, kapital dan angka",
+            "password.min" => "Password minimal 8 karakter"
         ];
 
         $validator = Validator::make($request->all(), [
             'nama_mhs' => 'required|string|alpha_dash|alpha',
             'nim' => 'required|string|unique:tb_mahasiswa|numeric|digits:7',
-            'password' => 'required|string',
-            'id_kelas' => 'required|exists:tb_kelas,id_kelas',
+            'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
+            'id_kelas' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
         ], $messages);
 
         if ($validator->fails()) {

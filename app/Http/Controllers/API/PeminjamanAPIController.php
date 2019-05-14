@@ -31,6 +31,31 @@ class PeminjamanAPIController extends Controller
         } else { }
     }
 
+    public function getPeminjamanMhs(Request $request)
+    {
+        $nim = request()->nim;
+        $status = request()->status;
+
+        $messages = [
+            "nim.required" => "NIM kosong",
+            "nim.exists" => "NIM salah",
+            "nim.numeric" => "Format NIM salah"
+        ];
+
+
+        if ($status == null) {
+            $peminjam = Peminjaman::all();
+        } else {
+            $peminjam = DB::table('tb_peminjaman')->where('status', $status)->where('nim', $nim)->get();
+            if ($peminjam != null) {
+                return response()->json(
+                    //'errorRes' => 0,
+                    $peminjam
+                );
+            } else { }
+        }
+    }
+
     public function pengembalianPinjam(Request $request)
     {
         $id_pinjam = request()->id_pinjam;
@@ -169,7 +194,7 @@ class PeminjamanAPIController extends Controller
             'nama_kegiatan' => $request->nama_kegiatan,
             'tgl_pinjam' => $request->tgl_pinjam,
             'tgl_kembali' => $request->tgl_kembali,
-            'status' => '0'
+            'status' => '1'
         ];
 
         $id_barang = $request->id_barang;
@@ -215,8 +240,8 @@ class PeminjamanAPIController extends Controller
                 ]);
             } else {
                 return response()->json([
-                    'errorRes' => 0,
-                    'message' => 'Berhasil'
+                    'errorRes' => 1,
+                    'message' => 'gagal'
                 ]);
             }
         }

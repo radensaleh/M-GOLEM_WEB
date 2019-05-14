@@ -7,6 +7,7 @@ use DB;
 use App\Teknisi;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class TeknisiAPIController extends Controller
 {
@@ -29,7 +30,7 @@ class TeknisiAPIController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'username'   => 'required|max:15|alpha_dash|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/|exists:tb_teknisi,username',
+            'username'   => 'required|max:15|alpha_num|exists:tb_teknisi,username',
             'password' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
         ], $messages);
 
@@ -52,6 +53,39 @@ class TeknisiAPIController extends Controller
                 return response()->json([
                     'errorRes'   => 2,
                     'message' => 'Password Salah'
+                ], 200);
+            }
+        }
+    }
+
+    public function ubahPassword(Request $request)
+    {
+
+        $username = $request->username;
+        $password = Hash::make($request->password);
+
+        $messages = [
+            "username.required" => "Username kosong",
+            "username.exists" => "Username salah",
+            "password.required" => "Password baru tidak boleh kosong",
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|exists:tb_teknisi,username',
+            'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errorRes' => 1,
+                'message' => $validator->messages()->all()[0],
+            ], 200);
+        } else {
+            $update = Teknisi::where('username', $username)->update(['password' => $password]);
+            if ($update) {
+                return response()->json([
+                    'errorRes' => 0,
+                    'message' => "Ubah password berhasil",
                 ], 200);
             }
         }
