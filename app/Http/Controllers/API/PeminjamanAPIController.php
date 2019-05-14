@@ -241,7 +241,7 @@ class PeminjamanAPIController extends Controller
             } else {
                 return response()->json([
                     'errorRes' => 1,
-                    'message' => 'gagal'
+                    'message' => 'Gagal'
                 ]);
             }
         }

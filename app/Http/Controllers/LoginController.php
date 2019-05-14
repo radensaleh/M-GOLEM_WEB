@@ -60,7 +60,7 @@ class LoginController extends Controller
       } else {
         return response()->json([
           'error'   => 2,
-          'message' => 'Wrong email or Password'
+          'message' => 'Wrong Username or Password'
         ], 200);
       }
     }
