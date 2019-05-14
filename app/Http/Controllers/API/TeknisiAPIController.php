@@ -15,12 +15,12 @@ class TeknisiAPIController extends Controller
         $auth = auth()->guard('teknisi');
 
         $messages = [
-            "username.required" => "Username kosong",
-            "username.exists" => "Username salah",
-            "username.regex" => "Format username salah",
-            "username.alpha_dash" => "Format username salah",
-            "password.required" => "Password kosong",
-            "password.regex" => "Format passowrd salah"
+            "username.required" => "Username Kosong",
+            "username.exists" => "Username Salah",
+            "username.regex" => "Format Username Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Username123 ]",
+            "username.alpha_dash" => "Format Username Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Username123 ]",
+            "password.required" => "Password Kosong",
+            "password.regex" => "Format Password Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Password123 ]"
         ];
 
         $credentials = [

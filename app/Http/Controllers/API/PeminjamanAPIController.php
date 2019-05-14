@@ -215,8 +215,8 @@ class PeminjamanAPIController extends Controller
                 ]);
             } else {
                 return response()->json([
-                    'errorRes' => 0,
-                    'message' => 'Berhasil'
+                    'errorRes' => 1,
+                    'message' => 'Gagal'
                 ]);
             }
         }

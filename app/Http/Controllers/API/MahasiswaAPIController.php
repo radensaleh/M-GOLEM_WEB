@@ -19,7 +19,7 @@ class MahasiswaAPIController extends Controller
             "nim.exists" => "NIM Salah",
             "nim.numeric" => "Format NIM Salah",
             "password.required" => "Password Kosong",
-            "password.regex" => "Format Password Salah"
+            "password.regex" => "Format Password Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Password123 ]"
         ];
         $credentials = [
             'nim'    => $request->nim,
@@ -66,13 +66,14 @@ class MahasiswaAPIController extends Controller
             "nim.exists" => "NIM salah",
             "nim.numeric" => "Format NIM salah",
             "password.required" => "Password baru tidak boleh kosong",
-            "oldPassword.required" => "Password lama tidak boleh kosong"
+            "oldPassword.required" => "Password lama tidak boleh kosong",
+            "password.regex" => "Format Password Baru Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Password123 ]"
         ];
 
         $validator = Validator::make($request->all(), [
             'nim' => 'required|numeric|string|exists:tb_mahasiswa,nim|digits:7',
-            'oldPassword' => 'required|string',
-            'password' => 'required|string|different:oldPassword',
+            'oldPassword' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
+            'password' => 'required|string|different:oldPassword|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
         ], $messages);
 
         if ($validator->fails()) {
@@ -84,13 +85,13 @@ class MahasiswaAPIController extends Controller
             $passLama = Mahasiswa::where('nim', $nim)->value('password');
             if (Hash::check($passLama, $oldPassword)) {
                 return response()->json([
-                    'errorRes' => 1,
-                    'message' => "Password lama salah",
+                    'errorRes' => 0,
+                    'message' => "Benar",
                 ], 200);
             } else {
                 return response()->json([
                     'errorRes' => 1,
-                    'message' => "Benar",
+                    'message' => "Password Lama Salah",
                 ], 200);
             }
         }
@@ -106,20 +107,22 @@ class MahasiswaAPIController extends Controller
         ];
 
         $messages = [
-            "nama_mhs.required" => "Nama tidak boleh kosong",
-            "nama_mhs.alpha_dash" => "Format nama salah",
-            "nim.required" => "NIM tidak boleh kosong",
-            "nim.unique" => "NIM sudah terdaftar",
-            "nim.numeric" => "Format NIM salah",
-            "nim.digits" => "Jumlah digit NIM harus 7",
-            "id_kelas.exists" => "Data kelas tidak ada",
-            "password.required" => "Password tidak boleh kosong"
+            "nama_mhs.required" => "Nama Tidak Boleh Kosong",
+            "nama_mhs.alpha_dash" => "Format Nama Salah",
+            "nim.required" => "NIM Tidak Boleh Kosong",
+            "nim.unique" => "NIM Sudah Terdaftar",
+            "nim.numeric" => "Format NIM Salah",
+            "nim.digits" => "Jumlah Digit NIM Harus 7 Digit",
+            "id_kelas.exists" => "Data Kelas Tidak Ada",
+            "password.required" => "Password Tidak Boleh Kosong",
+            "password.regex" => "Format Password Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Password123 ]"
         ];
 
         $validator = Validator::make($request->all(), [
-            'nama_mhs' => 'required|string|alpha_dash|alpha',
+            'nama_mhs' => 'required|string',
+            // 'nama_mhs' => 'required|string|alpha_dash|alpha',
             'nim' => 'required|string|unique:tb_mahasiswa|numeric|digits:7',
-            'password' => 'required|string',
+            'password' => 'required|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])/',
             'id_kelas' => 'required|exists:tb_kelas,id_kelas',
         ], $messages);
 
