@@ -46,6 +46,11 @@ class TeknisiController extends Controller
           'error' => 0,
           'message' => 'Success Add Data'
         ], 200);
+      }else{
+        return response()->json([
+          'error' => 1,
+          'message' => 'Failed Add Data'
+        ], 200);
       }
     }
   }

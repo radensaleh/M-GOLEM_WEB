@@ -15,7 +15,7 @@ class CreateTbTeknisiTable extends Migration
     {
         Schema::create('tb_teknisi', function (Blueprint $table) {
             $table->string('username', 13)->primary();
-            $table->string('nama_teknisi', 10);
+            $table->string('nama_teknisi', 50);
             $table->string('password');
             $table->timestamps();
         });
