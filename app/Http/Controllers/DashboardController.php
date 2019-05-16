@@ -24,10 +24,26 @@ class DashboardController extends Controller
            $pinjam  = Peminjaman::count();
            $kembali = Peminjaman::count();
 
+           $pinjam_jan = Peminjaman::whereMonth('tgl_pinjam', '=', 1)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_feb = Peminjaman::whereMonth('tgl_pinjam', '=', 2)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_mar = Peminjaman::whereMonth('tgl_pinjam', '=', 3)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_apr = Peminjaman::whereMonth('tgl_pinjam', '=', 4)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_mei = Peminjaman::whereMonth('tgl_pinjam', '=', 5)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_jun = Peminjaman::whereMonth('tgl_pinjam', '=', 6)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_jul = Peminjaman::whereMonth('tgl_pinjam', '=', 7)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_agt = Peminjaman::whereMonth('tgl_pinjam', '=', 8)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_sep = Peminjaman::whereMonth('tgl_pinjam', '=', 9)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_okt = Peminjaman::whereMonth('tgl_pinjam', '=', 10)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_nov = Peminjaman::whereMonth('tgl_pinjam', '=', 11)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_des = Peminjaman::whereMonth('tgl_pinjam', '=', 12)->whereYear('tgl_pinjam', '=', 2019)->count();
+           $pinjam_2019 = Peminjaman::whereYear('tgl_pinjam', '=', 2019)->count();
+
            $username = $request->session()->get('usernameTeknisi');
            $nama_teknisi = DB::table('tb_teknisi')->where('username', $username)->value('nama_teknisi');
            return view('teknisi.dashboard', compact(
-              'nama_teknisi', 'mhs', 'barang', 'pinjam', 'kembali'
+              'nama_teknisi', 'mhs', 'barang', 'pinjam', 'kembali',
+              'pinjam_jan','pinjam_feb', 'pinjam_mar', 'pinjam_apr', 'pinjam_mei', 'pinjam_jun', 'pinjam_jul',
+              'pinjam_agt','pinjam_sep','pinjam_okt','pinjam_nov','pinjam_des','pinjam_2019'
            ));
        }
     }

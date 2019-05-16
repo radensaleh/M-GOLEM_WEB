@@ -140,7 +140,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/boy.png" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/teknisi.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -148,7 +148,7 @@
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
 
                             <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
@@ -190,7 +190,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Barang <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addData"><i class="fa fa-plus-circle"></i> Add</button>
+                                <strong class="card-title">Data Barang
+                                  <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addData"><i class="fa fa-plus-circle"></i> Add</button> -->
                                   <a href="{{ route('allDtBarang') }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Print All</a>
                                   <a href="{{ route('allQrCode') }}" class="btn btn-warning btn-sm"><i class="fa fa-qrcode"></i> Print QR Code</a></strong>
                             </div>
@@ -205,7 +206,7 @@
                                           <th>Merk</th>
                                           <th>Tipe</th>
                                           <th>Kuantitas</th>
-                                          <th>Action</th>
+                                          <!-- <th>Action</th> -->
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -224,10 +225,10 @@
                                           <td>{{ $data->merk->nama_merk }}</td>
                                           <td>{{ $data->tipe->nama_tipe }}</td>
                                           <td>{{ $data->kuantitas }}</td>
-                                          <td>
+                                          <!-- <td>
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editData" data-id_barang="{{ $data->id_barang }}" data-kategori="{{ $data->id_kategori }}" data-merk="{{ $data->id_merk }}" data-tipe="{{ $data->id_tipe }}" data-kuantitas="{{ $data->kuantitas }}"><i class="fa fa-edit"></i> Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteData" data-id_barang="{{ $data->id_barang }}"><i class="fa fa-trash"></i> Delete</button>
-                                          </td>
+                                          </td> -->
                                         </tr>
                                       @endforeach
                                   </tbody>

@@ -140,7 +140,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/boy.png" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/teknisi.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -148,7 +148,7 @@
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
 
                             <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>

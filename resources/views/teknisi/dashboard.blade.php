@@ -139,7 +139,7 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/boy.png" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/teknisi.png" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -147,7 +147,7 @@
 
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">3</span></a> -->
 
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
 
                             <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
@@ -241,7 +241,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="box-title">Traffic </h4>
+                                <h4 class="box-title">Grafik Peminjaman ditahun 2019 </h4>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
@@ -254,17 +254,18 @@
                                     <div class="card-body">
                                         <div class="progress-box progress-2">
                                             <h4 class="por-title">Total Peminjaman</h4>
-                                            <div class="por-txt">322 Peminjaman / tahun</div>
+                                            <div class="por-txt">{{ $pinjam_2019 }} Peminjaman / tahun</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
-                                            <h4 class="por-title">Total Pengembalian</h4>
+                                            <!-- <h4 class="por-title">Total Pengembalian</h4>
                                             <div class="por-txt">29 Pengembalian / tahun</div>
                                             <div class="progress mb-2" style="height: 5px;">
                                                 <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 100%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
+                                            </div> -->
+
                                         </div>
                                     </div> <!-- /.card-body -->
                                 </div>
@@ -279,7 +280,7 @@
                 <!-- cal -->
                 <div class="orders">
                     <div class="row">
-                        <div class="col-xl-8">
+                        <div class="col-xl-12">
                           <!-- Calender Chart Weather  -->
                           <div class="row">
                               <div class="col-md-12 col-lg-12">
@@ -296,7 +297,7 @@
                           <!-- /Calender Chart Weather -->
                         </div>  <!-- /.col-lg-8 -->
 
-                        <div class="col-xl-4">
+                        <!-- <div class="col-xl-4">
                             <div class="row">
                                 <div class="col-lg-6 col-xl-12">
                                     <div class="card br-0">
@@ -305,10 +306,10 @@
                                                 <div id="flotPie1" class="float-chart"></div>
                                             </div>
                                         </div>
-                                    </div><!-- /.card -->
+                                    </div>
                                 </div>
                             </div>
-                        </div> <!-- /.col-md-4 -->
+                        </div> -->
                     </div>
                 </div>
                 <!-- /.cal -->
@@ -365,41 +366,55 @@
             "use strict";
 
             // Pie chart flotPie1
-            var piedata = [
-                { label: "Peminjaman", data: [[1,300]], color: '#00c292'},
-                { label: "Pengembalian", data: [[1,33]], color: '#ef5350'},
-            ];
-
-            $.plot('#flotPie1', piedata, {
-                series: {
-                    pie: {
-                        show: true,
-                        radius: 1,
-                        innerRadius: 0.65,
-                        label: {
-                            show: true,
-                            radius: 2/3,
-                            threshold: 2
-                        },
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-            });
+            // var piedata = [
+            //     { label: "Peminjaman", data: [[1,300]], color: '#00c292'},
+            //     { label: "Pengembalian", data: [[1,33]], color: '#ef5350'},
+            // ];
+            //
+            // $.plot('#flotPie1', piedata, {
+            //     series: {
+            //         pie: {
+            //             show: true,
+            //             radius: 1,
+            //             innerRadius: 0.65,
+            //             label: {
+            //                 show: true,
+            //                 radius: 2/3,
+            //                 threshold: 2
+            //             },
+            //             stroke: {
+            //                 width: 0
+            //             }
+            //         }
+            //     },
+            //     grid: {
+            //         hoverable: true,
+            //         clickable: true
+            //     }
+            // });
             // Pie chart flotPie1  End
+
+            //get data
+            var jan = {{ $pinjam_jan }};
+            var feb = {{ $pinjam_apr }};
+            var mar = {{ $pinjam_mar }};
+            var apr = {{ $pinjam_apr }};
+            var mei = {{ $pinjam_mei }};
+            var jun = {{ $pinjam_jun }};
+            var jul = {{ $pinjam_jul }};
+            var agt = {{ $pinjam_agt }};
+            var sep = {{ $pinjam_sep }};
+            var okt = {{ $pinjam_okt }};
+            var nov = {{ $pinjam_nov }};
+            var des = {{ $pinjam_des }};
 
             // Traffic Chart using chartist
             if ($('#traffic-chart').length) {
                 var chart = new Chartist.Line('#traffic-chart', {
                   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun','Jul','Agt','Sep','Okt','Nov','Des'],
                   series: [
-                  [1, 4, 5,  6,  2,  3],
-                  [1, 3, 1,  2,  1,  3]
+                  [jan, feb, mar, apr, mei, jun, jul, agt, sep, okt, nov, des],
+                  // [1, 3, 1,  2,  1,  3]
                   ]
               }, {
                 low: 0,
