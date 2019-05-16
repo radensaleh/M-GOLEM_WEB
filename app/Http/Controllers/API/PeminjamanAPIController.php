@@ -114,8 +114,25 @@ class PeminjamanAPIController extends Controller
             ], 200);
         } else {
             $status = DB::table('tb_peminjaman')->where('id_pinjam', $id_pinjam)->value('status');
+            $dataBarang = DB::table('tb_daftar_barang')->where('id_pinjam', $id_pinjam)->get();
 
             if ($status == '1') {
+                foreach ($dataBarang as $data) {
+                    $stok = DB::table('tb_barang')->where('id_barang', $data->id_barang)->value('kuantitas');
+                    if ($stok < $data->kuantitas) {
+                        return response()->json([
+                            'errorRes' => 1,
+                            'message' => 'Stok barang dengan ID ' . $data->id_barang . ' tidak mencukupi'
+                        ], 200);
+                    }
+                }
+
+                foreach ($dataBarang as $data) {
+                    $stok = DB::table('tb_barang')->where('id_barang', $data->id_barang)->value('kuantitas');
+                    $stokBaru = $stok - $data->kuantitas;
+                    DB::table('tb_barang')->where('id_barang', $data->id_barang)->update(['kuantitas' => $stokBaru]);
+                }
+
                 DB::table('tb_peminjaman')->where('id_pinjam', $id_pinjam)->update(['status' => '2']);
                 DB::table('tb_peminjaman')->where('id_pinjam', $id_pinjam)->update(['username_verifpinjam' => $username_pinjam]);
                 return response()->json([
@@ -123,6 +140,13 @@ class PeminjamanAPIController extends Controller
                     'message' => 'Berhasil verifikasi peminjaman'
                 ], 200);
             } else if ($status == '3') {
+
+                foreach ($dataBarang as $data) {
+                    $stok = DB::table('tb_barang')->where('id_barang', $data->id_barang)->value('kuantitas');
+                    $stokBaru = $stok + $data->kuantitas;
+                    DB::table('tb_barang')->where('id_barang', $data->id_barang)->update(['kuantitas' => $stokBaru]);
+                }
+
                 DB::table('tb_peminjaman')->where('id_pinjam', $id_pinjam)->update(['status' => '0']);
                 DB::table('tb_peminjaman')->where('id_pinjam', $id_pinjam)->update(['username_verifkembali' => $username_pinjam]);
                 return response()->json([

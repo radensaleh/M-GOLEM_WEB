@@ -26,6 +26,7 @@ Route::post('ubahPasswordTeknisi', 'API\TeknisiAPIController@ubahPassword');
 Route::get('mahasiswa', 'API\MahasiswaAPIController@getMahasiswa');
 Route::post('registrasi', 'API\MahasiswaAPIController@registrasi');
 Route::get('barang', 'API\BarangAPIController@getBarang');
+Route::get('barangAll', 'API\BarangAPIController@getBarangAll');
 Route::get('kelas', 'API\KelasAPIController@getKelas');
 Route::post('pinjamBarang', 'API\PeminjamanAPIController@peminjaman');
 Route::get('getPeminjaman', 'API\PeminjamanAPIController@getPeminjaman');

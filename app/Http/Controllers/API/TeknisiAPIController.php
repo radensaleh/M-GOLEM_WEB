@@ -19,7 +19,7 @@ class TeknisiAPIController extends Controller
             "username.required" => "Username Kosong",
             "username.exists" => "Username Salah",
             "username.regex" => "Format Username Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Username123 ]",
-            "username.alpha_dash" => "Format Username Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Username123 ]",
+            "username.alpha_num" => "Format Username Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Username123 ]",
             "password.required" => "Password Kosong",
             "password.regex" => "Format Password Salah [ Terdiri dari (a-z), (A-Z) dan (0-9) | exp. Password123 ]"
         ];
