@@ -47,7 +47,7 @@
 
           <div class="wrap-input100">
             <input class="input100" type="text" name="username">
-            <span class="focus-input100" data-placeholder="Username | ex. AdminTeknisi01"></span>
+            <span class="focus-input100" data-placeholder="Username | ex. Teknisi01"></span>
           </div>
 
           <div class="wrap-input100">
@@ -55,7 +55,7 @@
               <i class="zmdi zmdi-eye"></i>
             </span>
             <input class="input100" type="password" name="password">
-            <span class="focus-input100" data-placeholder="Password | ex. Admin123?!"></span>
+            <span class="focus-input100" data-placeholder="Password | ex. Teknisi123"></span>
           </div>
 
           <div class="container-login100-form-btn">
