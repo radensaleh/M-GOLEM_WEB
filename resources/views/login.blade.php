@@ -47,7 +47,7 @@
 
           <div class="wrap-input100">
             <input class="input100" type="text" name="username">
-            <span class="focus-input100" data-placeholder="Username | ex. AdminTeknisi01"></span>
+            <span class="focus-input100" data-placeholder="Username | ex. AdminTeknisi01 zzz"></span>
           </div>
 
           <div class="wrap-input100">
