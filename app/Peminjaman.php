@@ -23,7 +23,7 @@ class Peminjaman extends Model
 
   public function teknisipinjam()
   {
-    return $this->belongsTo('App\Teknisi', 'username_verifpinjam');
+    return $this->belongsTo('App\Teknisi', 'username');
   }
 
   public function teknisikembali()
