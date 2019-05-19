@@ -29,12 +29,12 @@
           <tr>
             <td width="3%">{{ ++$key }}</td>
             <th width="3%">{{ $data->id_pinjam }}</th>
-            <th width="7%">{{ $data->mahasiswa->nama_mhs }}</th>
+            <th width="7%">{{ $data->nama_mhs }}</th>
             <th width="3%">{{ $data->nama_kegiatan }}</th>
             <th width="5%">{{ $data->tgl_pinjam }}</th>
             <th width="5%">{{ $data->tgl_kembali }}</th>
             <th width="5%">{{ $data->status }}</th>
-            <th width="7%">{{ $data->teknisipinjam->nama_teknisi }}</th>
+            <th width="7%">{{ $data->nama_teknisi }}</th>
           </tr>
         @endforeach
       </tbody>

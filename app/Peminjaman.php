@@ -21,14 +21,4 @@ class Peminjaman extends Model
     return $this->belongsTo('App\Mahasiswa', 'nim');
   }
 
-  public function teknisipinjam()
-  {
-    return $this->belongsTo('App\Teknisi', 'username');
-  }
-
-  public function teknisikembali()
-  {
-    return $this->belongsTo('App\Teknisi', 'username_verifkembali');
-  }
-
 }
