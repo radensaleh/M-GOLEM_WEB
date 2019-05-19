@@ -9,7 +9,7 @@ class Peminjaman extends Model
   protected $table = 'tb_peminjaman';
 
   protected $fillable = [
-    'id_pinjam', 'nim', 'username', 'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'status'
+    'id_pinjam', 'nim', 'username_verifpinjam', 'username_verifkembali' ,'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'status'
   ];
 
   protected $primaryKey = 'id_pinjam';
@@ -20,4 +20,15 @@ class Peminjaman extends Model
   {
     return $this->belongsTo('App\Mahasiswa', 'nim');
   }
+
+  public function teknisipinjam()
+  {
+    return $this->belongsTo('App\Teknisi', 'username_verifpinjam');
+  }
+
+  public function teknisikembali()
+  {
+    return $this->belongsTo('App\Teknisi', 'username_verifkembali');
+  }
+
 }

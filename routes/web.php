@@ -34,6 +34,7 @@ Route::get('/dataPengembalian', 'PengembalianController@showDataPengembalian')->
 Route::post('/doLogin','LoginController@doLogin')->name('doLogin');
 Route::get('/logout', 'DashboardController@logout')->name('logout');
 Route::get('/dataBarang', 'BarangController@showDataBarang')->name('dataBarang');
+Route::get('/pdfPeminjaman', 'PeminjamanController@pdfPinjam')->name('pdfPinjam');
 
 //Admin
 Route::get('/admin/page/login', 'LoginController@showLoginAdmin')->name('loginAdmin');

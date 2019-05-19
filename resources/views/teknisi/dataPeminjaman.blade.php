@@ -191,6 +191,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Data Peminjaman</strong>
+                                <a href="{{ route('pdfPinjam') }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Print All</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -202,7 +203,7 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
                                             <th>Status Peminjaman</th>
-                                            <th>Action</th>
+                                            <!-- <th>Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -224,7 +225,7 @@
                                                 <button type="button" class="btn btn-success btn-sm"><i class="fa fa-clock-o"></i> Sudah Di Kembalikan</button>
                                               @endif
                                             </td>
-                                            <td></td>
+                                            <!-- <td></td> -->
                                           </tr>
                                         @endforeach
                                         <!-- <tr>

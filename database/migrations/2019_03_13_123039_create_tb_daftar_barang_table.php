@@ -14,11 +14,12 @@ class CreateTbDaftarBarangTable extends Migration
     public function up()
     {
         Schema::create('tb_daftar_barang', function (Blueprint $table) {
-            $table->string('id_list', 5)->primary();
+            $table->increments('id_list');
             $table->string('id_pinjam', 5)->index();
             $table->foreign('id_pinjam')->references('id_pinjam')->on('tb_peminjaman');
             $table->string('id_barang', 5)->index();
             $table->foreign('id_barang')->references('id_barang')->on('tb_barang');
+            $table->integer('kuantitas', false, true)->length(10);
             $table->timestamps();
         });
     }

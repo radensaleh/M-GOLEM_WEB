@@ -16,4 +16,10 @@ class PeminjamanController extends Controller
         $pinjam = Peminjaman::all()->where('status', '<=', 3);
         return view("teknisi.dataPeminjaman", compact('nama_teknisi', 'pinjam'));
     }
+
+    public function pdfPinjam(){
+        $pinjam = Peminjaman::all();
+        $pdf    = PDF::loadView('teknisi.pdfPeminjaman', compact('pinjam'));
+        return $pdf->download('Data Peminjaman');
+    }
 }
