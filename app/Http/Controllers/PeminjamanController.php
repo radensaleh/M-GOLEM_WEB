@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
 {
-    public function showDataPeminjaman(Request $request){
+    public function showDataPeminjaman(Request $request)
+    {
         $username = $request->session()->get('usernameTeknisi');
         $nama_teknisi = DB::table('tb_teknisi')->where('username', $username)->value('nama_teknisi');
 
@@ -18,18 +19,23 @@ class PeminjamanController extends Controller
         return view("teknisi.dataPeminjaman", compact('nama_teknisi', 'pinjam'));
     }
 
-    public function pdfPinjam(){
+    public function pdfPinjam()
+    {
         // $pinjam = Peminjaman::all();
         $pinjam = DB::table('tb_peminjaman')
-                  ->select('tb_peminjaman.id_pinjam', 'tb_mahasiswa.nama_mhs', 'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'tb_teknisipinjam.nama_teknisi as teknisi_pinjam', 'tb_teknisikembali.nama_teknisi as teknisi_kembali')
-                  ->join('tb_mahasiswa', 'tb_mahasiswa.nim', '=', 'tb_peminjaman.nim')
-                  ->join('tb_teknisi as tb_teknisipinjam', 'tb_teknisipinjam.username', '=', 'tb_peminjaman.username_verifpinjam')
-                  ->join('tb_teknisi as tb_teknisikembali', 'tb_teknisikembali.username', '=', 'tb_peminjaman.username_verifkembali')
-                  // ->join('tb_daftar_barang', 'tb_daftar_barang.id_pinjam', '=', 'tb_peminjaman.id_pinjam')
-                  ->where('status', '=', '4')
-                  ->get();
+            ->select('tb_peminjaman.id_pinjam', 'tb_mahasiswa.nama_mhs', 'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'tb_teknisipinjam.nama_teknisi as teknisi_pinjam', 'tb_teknisikembali.nama_teknisi as teknisi_kembali')
+            ->join('tb_mahasiswa', 'tb_mahasiswa.nim', '=', 'tb_peminjaman.nim')
+            ->join('tb_teknisi as tb_teknisipinjam', 'tb_teknisipinjam.username', '=', 'tb_peminjaman.username_verifpinjam')
+            ->join('tb_teknisi as tb_teknisikembali', 'tb_teknisikembali.username', '=', 'tb_peminjaman.username_verifkembali')
+            //->join('tb_daftar_barang', 'tb_daftar_barang.id_pinjam', '=', 'tb_peminjaman.id_pinjam')
+            ->where('status', '=', '4')
+            ->get();
 
-        $pdf    = PDF::loadView('teknisi.pdfPeminjaman', compact('pinjam'));
+        $daftar_barang = DB::table('tb_daftar_barang')->get();
+        $barang = DB::table('tb_barang')->get();
+
+
+        $pdf    = PDF::loadView('teknisi.pdfPeminjaman', compact('pinjam', 'daftar_barang', 'barang'));
         return $pdf->download('Data Peminjaman');
     }
 }
