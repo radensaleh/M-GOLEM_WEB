@@ -21,10 +21,11 @@ class PeminjamanController extends Controller
     public function pdfPinjam(){
         // $pinjam = Peminjaman::all();
         $pinjam = DB::table('tb_peminjaman')
-                  ->select('id_pinjam', 'tb_mahasiswa.nama_mhs', 'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'status', 'tb_teknisi.nama_teknisi')
+                  ->select('id_pinjam', 'tb_mahasiswa.nama_mhs', 'nama_kegiatan', 'tgl_pinjam', 'tgl_kembali', 'tb_teknisipinjam.nama_teknisi as teknisi_pinjam', 'tb_teknisikembali.nama_teknisi as teknisi_kembali')
                   ->join('tb_mahasiswa', 'tb_mahasiswa.nim', '=', 'tb_peminjaman.nim')
-                  ->join('tb_teknisi', 'tb_teknisi.username', '=', 'tb_peminjaman.username_verifpinjam')
-                  ->where('status', '=', '1')->orWhere('status', '=', '2')
+                  ->join('tb_teknisi as tb_teknisipinjam', 'tb_teknisipinjam.username', '=', 'tb_peminjaman.username_verifpinjam')
+                  ->join('tb_teknisi as tb_teknisikembali', 'tb_teknisikembali.username', '=', 'tb_peminjaman.username_verifkembali')
+                  ->where('status', '=', '4')
                   ->get();
 
         $pdf    = PDF::loadView('teknisi.pdfPeminjaman', compact('pinjam'));

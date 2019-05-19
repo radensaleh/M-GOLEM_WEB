@@ -6,7 +6,7 @@
   </head>
   <body>
     <p>
-      <b>| Peminjaman</b> <br>
+      <b>| Peminjaman [ Sudah dikembalikan ]</b> <br>
        M - GOLEM [Mobile Goods Lending System Using Barcode]
     </p>
   <hr>
@@ -20,8 +20,8 @@
           <th width="3%">Kegiatan</th>
           <th width="5%">Tanggal Peminjaman</th>
           <th width="5%">Tanggal Pengembalian</th>
-          <th width="5%">Status Peminjaman</th>
           <th width="7%">Verifikasi Pinjam oleh</th>
+          <th width="7%">Verifikasi Kembali oleh</th>
         </tr>
       </thead>
       <tbody style="text-align:center;">
@@ -33,8 +33,8 @@
             <th width="3%">{{ $data->nama_kegiatan }}</th>
             <th width="5%">{{ $data->tgl_pinjam }}</th>
             <th width="5%">{{ $data->tgl_kembali }}</th>
-            <th width="5%">{{ $data->status }}</th>
-            <th width="7%">{{ $data->nama_teknisi }}</th>
+            <th width="7%">{{ $data->teknisi_pinjam }}</th>
+            <th width="7%">{{ $data->teknisi_kembali }}</th>
           </tr>
         @endforeach
       </tbody>

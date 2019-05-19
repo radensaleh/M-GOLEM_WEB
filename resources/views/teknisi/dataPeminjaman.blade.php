@@ -191,7 +191,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Data Peminjaman</strong>
-                                <a href="{{ route('pdfPinjam') }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Print All</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
