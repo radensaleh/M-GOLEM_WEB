@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use PDF;
 use App\Peminjaman;
 use Illuminate\Http\Request;
 
