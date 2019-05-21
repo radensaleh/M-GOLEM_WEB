@@ -22,7 +22,7 @@ class DashboardController extends Controller
            $mhs     = Mahasiswa::count();
            $barang  = Barang::count();
            $pinjam  = Peminjaman::count();
-           $kembali = Peminjaman::count();
+           $kembali = Peminjaman::where('status', '=', '0')->count();
 
            $pinjam_jan = Peminjaman::whereMonth('tgl_pinjam', '=', 1)->whereYear('tgl_pinjam', '=', 2019)->count();
            $pinjam_feb = Peminjaman::whereMonth('tgl_pinjam', '=', 2)->whereYear('tgl_pinjam', '=', 2019)->count();
