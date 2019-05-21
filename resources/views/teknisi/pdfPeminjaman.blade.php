@@ -38,7 +38,7 @@
           @if($Data->id_pinjam == $data->id_pinjam)
           @foreach($barang as $key => $data_barang)
           @if($data_barang->id_barang == $Data->id_barang )
-          {{$data_barang->id_kategori}}
+          {{ ++$key }}. {{$data_barang->nama_kategori}} {{ $data_barang->nama_merk }} {{ $data_barang->nama_tipe }} <br> 
           @endif
           @endforeach
           @endif

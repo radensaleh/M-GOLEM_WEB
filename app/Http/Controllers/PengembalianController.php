@@ -12,7 +12,7 @@ class PengembalianController extends Controller
       $username = $request->session()->get('usernameTeknisi');
       $nama_teknisi = DB::table('tb_teknisi')->where('username', $username)->value('nama_teknisi');
 
-      $pinjam = Peminjaman::all()->where('status', '==', 4);
+      $pinjam = Peminjaman::all()->where('status', '==', 0);
       return view("teknisi.dataPengembalian", compact('nama_teknisi', 'pinjam'));
   }
 }
