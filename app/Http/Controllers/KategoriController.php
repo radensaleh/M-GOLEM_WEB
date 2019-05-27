@@ -13,7 +13,7 @@ class KategoriController extends Controller
         $username = $request->session()->get('usernameAdmin');
         $nama_admin = DB::table('tb_admin')->where('username', $username)->value('nama');
 
-        $kategori = Kategori::all();
+        $kategori = Kategori::orderBy('id_kategori', 'asc')->get();
         return view('adminWeb.dataKategori', compact('nama_admin', 'kategori'));
     }
 

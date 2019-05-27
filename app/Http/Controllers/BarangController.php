@@ -19,10 +19,10 @@ class BarangController extends Controller
         $username = $request->session()->get('usernameTeknisi');
         $nama_teknisi = DB::table('tb_teknisi')->where('username', $username)->value('nama_teknisi');
 
-        $barang   = Barang::all();
-        $tipe     = Type::all();
-        $kategori = Kategori::all();
-        $merk     = Merk::all();
+        $barang   = Barang::orderBy('id_barang', 'asc')->get();
+        $tipe     = Type::orderBy('nama_tipe', 'asc')->get();
+        $kategori = Kategori::orderBy('nama_kategori', 'asc')->get();
+        $merk     = Merk::orderBy('nama_merk', 'asc')->get();
 
         return view('teknisi.dataBarang', compact('nama_teknisi', 'barang', 'tipe', 'kategori', 'merk'));
     }
@@ -32,10 +32,10 @@ class BarangController extends Controller
         $username = $request->session()->get('usernameAdmin');
         $nama_admin = DB::table('tb_admin')->where('username', $username)->value('nama');
 
-        $barang   = Barang::all();
-        $tipe     = Type::all();
-        $kategori = Kategori::all();
-        $merk     = Merk::all();
+        $barang   = Barang::orderBy('id_barang', 'asc')->get();
+        $tipe     = Type::orderBy('nama_tipe', 'asc')->get();
+        $kategori = Kategori::orderBy('nama_kategori', 'asc')->get();
+        $merk     = Merk::orderBy('nama_merk', 'asc')->get();
 
         return view('adminWeb.dataBarang', compact('nama_admin', 'barang', 'tipe', 'kategori', 'merk'));
     }

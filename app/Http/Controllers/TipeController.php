@@ -13,7 +13,7 @@ class TipeController extends Controller
         $username = $request->session()->get('usernameAdmin');
         $nama_admin = DB::table('tb_admin')->where('username', $username)->value('nama');
 
-        $tipe = Type::all();
+        $tipe = Type::orderBy('id_tipe', 'asc')->get();
         return view('adminWeb.dataTipe', compact('nama_admin', 'tipe'));
     }
 

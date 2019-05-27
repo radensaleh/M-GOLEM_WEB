@@ -13,7 +13,7 @@ class MerkController extends Controller
         $username = $request->session()->get('usernameAdmin');
         $nama_admin = DB::table('tb_admin')->where('username', $username)->value('nama');
 
-        $merk = Merk::all();
+        $merk = Merk::orderBy('id_merk', 'asc')->get();
         return view('adminWeb.dataMerk', compact('nama_admin', 'merk'));
     }
 
